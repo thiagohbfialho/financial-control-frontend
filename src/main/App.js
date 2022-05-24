@@ -1,15 +1,20 @@
 import '../common/template/dependencies'
 import React from "react";
+import { HashRouter } from 'react-router-dom'
+
 import Header from '../common/template/header';
 import Sidebar from '../common/template/sidebar';
-import Content from '../common/template/content';
 import Footer from '../common/template/footer';
 
+import Routes from './routes';
+
 export default props => (
-  <div className="wrapper">
-    <Header/>
-    <Sidebar/>
-    <Content/>
-    <Footer/>
-  </div>
+  <HashRouter>
+    <div className="wrapper">
+      <Header/>
+      <Sidebar/>
+      <Routes/>
+      <Footer/>
+    </div>
+  </HashRouter>
 )

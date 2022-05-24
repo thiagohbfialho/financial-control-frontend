@@ -5,6 +5,9 @@ export default props => (
         <div className="pull-right hidden-xs">
             <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2022 <a href="https://thiagohbfialho.github.io/">Thiago Fialho</a></strong> All rights reserved.
+        <strong>
+            Copyright &copy; 2022 
+            <a href="https://thiagohbfialho.github.io/" target='_blank'> Thiago Fialho</a>.
+        </strong> All rights reserved.
     </footer>
 )
