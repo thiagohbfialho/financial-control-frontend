@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { selectTab, showTabs } from "../common/tab/tabActions";
+import { create } from "./paymentActions";
 
 import TabContent from "../common/tab/tabContent";
 import TabHeader from "../common/tab/tabHeader";
@@ -12,6 +13,8 @@ import TabsHeader from "../common/tab/tabsHeader";
 
 import Content from "../common/template/content";
 import ContentHeader from "../common/template/contentHeader";
+import List from "./paymentList";
+import Form from "./paymentForm";
 
 class Payment extends Component {
 
@@ -33,8 +36,12 @@ class Payment extends Component {
                             <TabHeader label='Delete' icon='trash-o' target='tabDelete'/>
                         </TabsHeader>
                         <TabsContent>
-                            <TabContent id='tabList'><h1>List</h1></TabContent>
-                            <TabContent id='tabCreate'><h1>Create</h1></TabContent>
+                            <TabContent id='tabList'>
+                                <List/>
+                            </TabContent>
+                            <TabContent id='tabCreate'>
+                                <Form onSubmit={this.props.create}/>
+                            </TabContent>
                             <TabContent id='tabUpdate'><h1>Update</h1></TabContent>
                             <TabContent id='tabDelete'><h1>Delete</h1></TabContent>
                         </TabsContent>
@@ -45,5 +52,7 @@ class Payment extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+    selectTab, showTabs, create
+}, dispatch)
 export default connect(null, mapDispatchToProps)(Payment)
