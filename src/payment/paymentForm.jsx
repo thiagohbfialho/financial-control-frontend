@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import labelAndInput from "../common/form/labelAndInput";
 
 class PaymentForm extends Component {
 
@@ -8,8 +9,10 @@ class PaymentForm extends Component {
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
-                    <Field name="nome" component="input"/>
-                    <Field name="email" component="input"/>
+                    <Field name="nome" component={labelAndInput} 
+                    label='Nome' cols='12 4' placeholder='Informe o nome' />
+                    <Field name="email" component={labelAndInput} 
+                    label='Email' cols='12 4' placeholder='Informe o email' />
                 </div>
                 <div className="box-footer">
                     <button type="submit" className="btn btn-primary">
