@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getlist } from "./paymentActions";
+import { getList } from "./paymentActions";
 
 class PaymentList extends Component {
 
     componentWillMount(){
-        this.props.getlist()
+        this.props.getList()
     }
 
     renderRows(){
@@ -40,5 +40,5 @@ class PaymentList extends Component {
 }
 
 const mapStateToProps = state => ({list: state.payment.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getlist}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({getList}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps) (PaymentList)
