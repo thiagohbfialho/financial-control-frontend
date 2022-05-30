@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getList } from "./paymentActions";
+import { getList, showUpdate } from "./paymentActions";
 
 class PaymentList extends Component {
 
@@ -15,6 +15,11 @@ class PaymentList extends Component {
             <tr key={p._id}>
                 <td>{p.nome}</td>
                 <td>{p.email}</td>
+                <td>
+                    <button className="btn btn-warning" onClick={() => this.props.showUpdate(p)}>
+                        <i className="fa fa-pencil"></i>
+                    </button>
+                </td>
             </tr>
         )) 
     }
@@ -28,6 +33,7 @@ class PaymentList extends Component {
                         <tr>
                             <th>Nome</th>
                             <th>Email</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,5 +46,5 @@ class PaymentList extends Component {
 }
 
 const mapStateToProps = state => ({list: state.payment.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getList}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({getList, showUpdate}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps) (PaymentList)
