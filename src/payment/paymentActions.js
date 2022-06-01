@@ -19,12 +19,17 @@ export function create(values){
 }
 
 export function update(values){
-    return submit(values, 'update')
+    return submit(values, 'put')
+}
+
+export function remove(values){
+    return submit(values, 'delete')
 }
 
 function submit(values, method){
     return dispatch => {
-        axios[method](`${BASE_URL}/financialControls`, values)
+        const id = values._id ? values._id : ''
+        axios[method](`${BASE_URL}/financialControls/${id}`, values)
             .then(resp => {
                 toastr.success('Sucesso', 'Operação Realizada com sucesso.')
                 dispatch(init())
@@ -39,7 +44,15 @@ export function showUpdate(payment) {
     return [
         showTabs('tabUpdate'),
         selectTab('tabUpdate'),
-        initialize('paymentForm',payment)
+        initialize('paymentForm', payment)
+    ]
+}
+
+export function showRemove(payment) {
+    return [
+        showTabs('tabDelete'),
+        selectTab('tabDelete'),
+        initialize('paymentForm', payment)
     ]
 }
 

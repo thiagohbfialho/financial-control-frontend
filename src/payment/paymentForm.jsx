@@ -9,13 +9,13 @@ import labelAndInput from "../common/form/labelAndInput";
 class PaymentForm extends Component {
 
     render(){
-        const { handleSubmit } = this.props
+        const { handleSubmit, readOnly } = this.props
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
-                    <Field name="nome" component={labelAndInput} 
+                    <Field name="nome" component={labelAndInput} readOnly={readOnly} 
                     label='Nome' cols='12 4' placeholder='Informe o nome' />
-                    <Field name="email" component={labelAndInput} 
+                    <Field name="email" component={labelAndInput} readOnly={readOnly}
                     label='Email' cols='12 4' placeholder='Informe o email' />
                 </div>
                 <div className="box-footer">

@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { selectTab, showTabs } from "../common/tab/tabActions";
-import { create } from "./paymentActions";
+import { create, update, remove } from "./paymentActions";
 
 import TabContent from "../common/tab/tabContent";
 import TabHeader from "../common/tab/tabHeader";
@@ -43,9 +43,11 @@ class Payment extends Component {
                                 <Form onSubmit={this.props.create}/>
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                <Form />
+                                <Form onSubmit={this.props.update}/>
                             </TabContent>
-                            <TabContent id='tabDelete'><h1>Delete</h1></TabContent>
+                            <TabContent id='tabDelete'>
+                                <Form onSubmit={this.props.remove} readOnly={true}/>
+                            </TabContent>
                         </TabsContent>
                     </Tabs>
                 </Content>
@@ -55,6 +57,6 @@ class Payment extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    selectTab, showTabs, create
+    selectTab, showTabs, create, update, remove
 }, dispatch)
 export default connect(null, mapDispatchToProps)(Payment)
