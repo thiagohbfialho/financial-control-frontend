@@ -10,8 +10,17 @@ import Summary from "./summary";
 
 class PaymentForm extends Component {
 
+    calculateSummary(){
+        const sum = (t, v) => t + v
+        return {
+            sumOfProventos: this.props.proventos.map(c => +c.valor || 0).reduce(sum),
+            sumOfPagamentos: this.props.pagamentos.map(d => +d.valor || 0).reduce(sum)
+        }
+    }
+
     render(){
         const { handleSubmit, readOnly, proventos, pagamentos } = this.props
+        const { sumOfProventos, sumOfPagamentos } = this.calculateSummary()
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -19,7 +28,7 @@ class PaymentForm extends Component {
                         label='Nome' cols='12 4' placeholder='Informe o nome' />
                     <Field name="email" component={labelAndInput} readOnly={readOnly}
                         label='Email' cols='12 4' placeholder='Informe o email' />
-                    <Summary provento={1000} pagamento={100} />
+                    <Summary provento={sumOfProventos} pagamento={sumOfPagamentos} />
                     <ItemList cols='12 6' list={proventos} readOnly={readOnly}
                         field='proventos' legend='Proventos' />
                     <ItemList cols='12 6' list={pagamentos} readOnly={readOnly}
